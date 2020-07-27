@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>net.andrewviolette</groupId>
+  <artifactId>ftclient</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20200727133218</lastUpdated>
+  </versioning>
+</metadata>
