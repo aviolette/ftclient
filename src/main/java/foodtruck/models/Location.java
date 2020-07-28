@@ -84,6 +84,10 @@ public class Location implements Serializable {
     neighborhood = builder.neighborhood;
   }
 
+  protected void setLatLng(LatLng latLng) {
+    this.latLng = latLng;
+  }
+
   @Nullable
   public String getNeighborhood() {
     return neighborhood;
