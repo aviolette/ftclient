@@ -162,6 +162,50 @@ public class Location implements Serializable {
     return this.name;
   }
 
+  public void setLatitude(double latitude) {
+    this.latitude = latitude;
+  }
+
+  public void setLongitude(double longitude) {
+    this.longitude = longitude;
+  }
+
+  public void setJustResolved(boolean justResolved) {
+    this.justResolved = justResolved;
+  }
+
+  public void setTwitterHandle(@Nullable String twitterHandle) {
+    this.twitterHandle = twitterHandle;
+  }
+
+  public void setDesignatedStop(boolean designatedStop) {
+    this.designatedStop = designatedStop;
+  }
+
+  public void setHasBooze(boolean hasBooze) {
+    this.hasBooze = hasBooze;
+  }
+
+  public void setRadiateTo(int radiateTo) {
+    this.radiateTo = radiateTo;
+  }
+
+  public void setPhoneNumber(@Nullable String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
+
+  public void setFacebookUri(@Nullable String facebookUri) {
+    this.facebookUri = facebookUri;
+  }
+
+  public void setEventCalendarUrl(@Nullable String eventCalendarUrl) {
+    this.eventCalendarUrl = eventCalendarUrl;
+  }
+
+  public void setAlexaProvided(boolean alexaProvided) {
+    this.alexaProvided = alexaProvided;
+  }
+
   @Nullable
   public String getTwitterHandle() {
     return this.twitterHandle;
