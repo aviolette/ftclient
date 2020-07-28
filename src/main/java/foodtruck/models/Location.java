@@ -16,11 +16,13 @@ import com.javadocmd.simplelatlng.util.LengthUnit;
 
 /**
  * Latitude and Longitude.
+ *
  * @author aviolette@gmail.com
  * @since Jul 12, 2011
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Location implements Serializable {
+
   private static final String UNKNOWN = "UNKNOWN";
 
   private static final long serialVersionUID = 1L;
@@ -51,6 +53,7 @@ public class Location implements Serializable {
   private boolean blacklistedFromCalendarSearch;
   private @Nullable String city;
   private @Nullable String neighborhood;
+  private String imageUrl;
 
   // For serializable
   public Location() {
@@ -162,6 +165,38 @@ public class Location implements Serializable {
     return this.name;
   }
 
+  public void setUrl(@Nullable String url) {
+    this.url = url;
+  }
+
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
+  public void setEventSpecific(boolean eventSpecific) {
+    this.eventSpecific = eventSpecific;
+  }
+
+  public void setRadius(double radius) {
+    this.radius = radius;
+  }
+
+  public void setOwnedBy(@Nullable String ownedBy) {
+    this.ownedBy = ownedBy;
+  }
+
+  public void setCreatedBy(@Nullable String createdBy) {
+    this.createdBy = createdBy;
+  }
+
+  public void setBlacklistedFromCalendarSearch(boolean blacklistedFromCalendarSearch) {
+    this.blacklistedFromCalendarSearch = blacklistedFromCalendarSearch;
+  }
+
   public void setLatitude(double latitude) {
     this.latitude = latitude;
   }
@@ -251,6 +286,7 @@ public class Location implements Serializable {
 
   /**
    * Return the truck that owns this location (i.e. a restaurant)
+   *
    * @return the truck that owns this location or null if it's not owned
    */
   @Nullable
@@ -302,7 +338,8 @@ public class Location implements Serializable {
       return false;
     }
     Location obj = (Location) o;
-    return obj.getLatLng().equals(getLatLng());
+    return obj.getLatLng()
+        .equals(getLatLng());
   }
 
   public Location withKey(Object key) {
@@ -337,7 +374,6 @@ public class Location implements Serializable {
     return radiateTo;
   }
 
-
   public String getShortenedName() {
     String shortened = name;
     if (Strings.isNullOrEmpty(name)) {
@@ -356,8 +392,7 @@ public class Location implements Serializable {
     return new Comparator<Location>() {
       @Override
       public int compare(Location o1, Location o2) {
-        double o1Val = o1.distanceFrom(Location.this),
-            o2Val = o2.distanceFrom(Location.this);
+        double o1Val = o1.distanceFrom(Location.this), o2Val = o2.distanceFrom(Location.this);
         if (o1Val == o2Val) {
           return 0;
         } else if (o1Val < o2Val) {
@@ -374,7 +409,8 @@ public class Location implements Serializable {
   }
 
   public java.util.function.Predicate<Location> rangedPredicate8(final double distance) {
-    return (input) -> input != null && input.within(distance).milesOf(Location.this);
+    return (input) -> input != null && input.within(distance)
+        .milesOf(Location.this);
   }
 
   public Predicate<Location> rangedPredicate(final double distance) {
@@ -388,7 +424,9 @@ public class Location implements Serializable {
   }
 
   public Location withRadius(double radius) {
-    return Location.builder(this).radius(radius).build();
+    return Location.builder(this)
+        .radius(radius)
+        .build();
   }
 
   public String getCity() {
@@ -483,7 +521,6 @@ public class Location implements Serializable {
       this.eventCalendarUrl = eventCalendarUrl;
       return this;
     }
-
 
     public Builder phoneNumber(String phoneNumber) {
       this.phoneNumber = phoneNumber;
@@ -602,6 +639,7 @@ public class Location implements Serializable {
 
   @SuppressWarnings("WeakerAccess")
   public class ScalarDistanceRequest {
+
     private final double distance;
 
     ScalarDistanceRequest(double distance) {
