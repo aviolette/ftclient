@@ -5,6 +5,7 @@ import java.util.Comparator;
 
 import javax.annotation.Nullable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Predicate;
@@ -23,7 +24,8 @@ public class Location implements Serializable {
   private static final String UNKNOWN = "UNKNOWN";
 
   private static final long serialVersionUID = 1L;
-  private LatLng latLng;
+  private double latitude;
+  private double longitude;
   private String name;
   private boolean valid;
   private @Nullable String description;
@@ -55,7 +57,6 @@ public class Location implements Serializable {
   }
 
   public Location(Builder builder) {
-    latLng = new LatLng(builder.lat, builder.lng);
     name = builder.name;
     valid = builder.valid;
     description = builder.description;
@@ -82,10 +83,8 @@ public class Location implements Serializable {
     blacklistedFromCalendarSearch = builder.blacklistedFromCalendarSearch;
     city = builder.city;
     neighborhood = builder.neighborhood;
-  }
-
-  protected void setLatLng(LatLng latLng) {
-    this.latLng = latLng;
+    latitude = builder.lat;
+    longitude = builder.lng;
   }
 
   @Nullable
@@ -146,16 +145,17 @@ public class Location implements Serializable {
     return popular;
   }
 
+  @JsonIgnore
   public LatLng getLatLng() {
-    return latLng;
+    return new LatLng(latitude, longitude);
   }
 
   public double getLatitude() {
-    return latLng.getLatitude();
+    return latitude;
   }
 
   public double getLongitude() {
-    return latLng.getLongitude();
+    return longitude;
   }
 
   public String getName() {
@@ -218,7 +218,7 @@ public class Location implements Serializable {
    * Return true if the location has been properly resolved.
    */
   public boolean isResolved() {
-    return valid && latLng.getLatitude() != 0 && latLng.getLongitude() != 0;
+    return valid && latitude != 0 && longitude != 0;
   }
 
   public boolean containedWithRadiusOf(Location loc) {
@@ -232,7 +232,8 @@ public class Location implements Serializable {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-        .add("Lat/Lng", latLng)
+        .add("Latitude", latitude)
+        .add("Longitude", longitude)
         .add("Name", name)
         // appengine throws Method undefined errors 'cause of this...not sure why
         .add("Radius", String.valueOf(radius))
@@ -246,18 +247,18 @@ public class Location implements Serializable {
 
   @Override
   public int hashCode() {
-    return latLng.hashCode();
+    return getLatLng().hashCode();
   }
 
   @Override
   public boolean equals(Object o) {
     if (o == this) {
       return true;
-    } else if (o == null || !(o instanceof Location)) {
+    } else if (!(o instanceof Location)) {
       return false;
     }
     Location obj = (Location) o;
-    return obj.latLng.equals(latLng);
+    return obj.getLatLng().equals(getLatLng());
   }
 
   public Location withKey(Object key) {
@@ -270,7 +271,7 @@ public class Location implements Serializable {
   }
 
   public double distanceFrom(Location mapCenter) {
-    return LatLngTool.distance(latLng, mapCenter.latLng, LengthUnit.MILE);
+    return LatLngTool.distance(getLatLng(), mapCenter.getLatLng(), LengthUnit.MILE);
   }
 
   public ScalarDistanceRequest within(double distance) {
@@ -564,7 +565,7 @@ public class Location implements Serializable {
     }
 
     public boolean milesOf(Location other) {
-      double actual = LatLngTool.distance(latLng, other.latLng, LengthUnit.MILE);
+      double actual = LatLngTool.distance(getLatLng(), other.getLatLng(), LengthUnit.MILE);
       return actual < distance;
     }
   }
