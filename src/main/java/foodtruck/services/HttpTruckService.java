@@ -28,12 +28,17 @@ public class HttpTruckService implements TruckService {
 
   @Override
   public List<Truck> findTrucksWithGoogleCalendars() {
-    return findTrucks("google_calendar");
+    return findTrucks("filter=google_calendar");
   }
 
   @Override
   public List<Truck> findTrucksWithICalCalendars() {
-    return findTrucks("ical");
+    return findTrucks("filter=ical");
+  }
+
+  @Override
+  public List<Truck> findByTwitterHandle(String twitterHandle) {
+    return findTrucks("twitter="+twitterHandle);
   }
 
   @Override
@@ -59,8 +64,8 @@ public class HttpTruckService implements TruckService {
     throw new RuntimeException(response.toString());
   }
 
-  private List<Truck> findTrucks(String filterParam) {
-    return httpGet("/services/v2/trucks?filter=" + filterParam, (response) -> {
+  private List<Truck> findTrucks(String queryString) {
+    return httpGet("/services/v2/trucks?" + queryString, (response) -> {
       try {
         if (response.statusCode() >= 400) {
           handleResponseError(response);

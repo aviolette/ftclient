@@ -11,5 +11,7 @@ public interface TruckService {
 
   List<Truck> findTrucksWithICalCalendars();
 
+  List<Truck> findByTwitterHandle(String twitterHandle);
+
   Optional<Truck> findById(String truckId);
 }
