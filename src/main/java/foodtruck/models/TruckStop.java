@@ -37,7 +37,7 @@ public class TruckStop implements Serializable {
   private @Nullable String description;
   private @Nullable String imageUrl;
 
-  private TruckStop() {}
+  public TruckStop() {}
 
   private TruckStop(Builder builder) {
     truck = builder.truck;
