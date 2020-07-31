@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import foodtruck.json.Json;
 
+@SuppressWarnings("DuplicatedCode")
 public class HttpAddressExtractor implements AddressExtractor {
 
   private static final Logger log = Logger.getLogger(HttpAddressExtractor.class.getName());

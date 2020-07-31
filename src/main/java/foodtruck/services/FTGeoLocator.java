@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import foodtruck.json.Json;
 import foodtruck.models.Location;
 
+@SuppressWarnings({"unused", "DuplicatedCode"})
 public class FTGeoLocator implements GeoLocator {
 
   private static final Logger log = Logger.getLogger(FTGeoLocator.class.getName());
@@ -33,7 +34,7 @@ public class FTGeoLocator implements GeoLocator {
       if (documentResponse.statusCode() >= 400) {
         log.log(Level.SEVERE, "Response code: " + documentResponse.statusCode());
         log.log(Level.SEVERE, documentResponse.body());
-        throw new RuntimeException("Could not connect to address matcher");
+        throw new RuntimeException("Could not connect to geolocator");
       }
       ObjectMapper mapper = Json.provideObjectMapper();
       var items = mapper.readValue(documentResponse.body(), Location[].class);
