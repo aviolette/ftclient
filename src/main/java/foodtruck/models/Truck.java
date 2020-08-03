@@ -213,6 +213,7 @@ public class Truck implements Serializable {
     return phoneticMarkup;
   }
 
+  @JsonIgnore
   public String getNameInSSML() {
     return MoreObjects.firstNonNull(phoneticMarkup, name);
   }

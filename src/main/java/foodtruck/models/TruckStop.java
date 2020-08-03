@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javax.annotation.Nullable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
@@ -21,6 +22,7 @@ import com.google.common.collect.Lists;
  * @since Jul 12, 2011
  */
 @SuppressWarnings("unused")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TruckStop implements Serializable {
   private static final Logger log = Logger.getLogger(TruckStop.class.getName());
   private Truck truck;
@@ -28,7 +30,8 @@ public class TruckStop implements Serializable {
   private ZonedDateTime endTime;
   private Location location;
   private boolean locked;
-  private @Nullable ZonedDateTime lastUpdated;
+  @Nullable
+  private ZonedDateTime lastUpdated;
   private @Nullable ZonedDateTime fromBeacon;
   private @Nullable ZonedDateTime manuallyUpdated;
   private List<String> notes;
