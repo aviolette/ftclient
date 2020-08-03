@@ -67,6 +67,7 @@ public class TruckStop implements Serializable {
     manuallyUpdated = builder.manuallyUpdated;
     description = builder.description;
     imageUrl = builder.imageUrl;
+    url = builder.url;
   }
 
   @Nullable
@@ -239,6 +240,7 @@ public class TruckStop implements Serializable {
     private @Nullable ZonedDateTime manuallyUpdated;
     private String description;
     private String imageUrl;
+    private String url;
 
     private Builder() {
     }
@@ -296,6 +298,11 @@ public class TruckStop implements Serializable {
 
     public Builder manuallyUpdated(@Nullable ZonedDateTime manuallyUpdated) {
       this.manuallyUpdated = manuallyUpdated;
+      return this;
+    }
+
+    public Builder url(@Nullable String url) {
+      this.url = url;
       return this;
     }
 
