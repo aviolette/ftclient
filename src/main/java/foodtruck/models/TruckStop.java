@@ -39,6 +39,17 @@ public class TruckStop implements Serializable {
   private @Nullable Long createdWithDeviceId;
   private @Nullable String description;
   private @Nullable String imageUrl;
+  private @Nullable String url;
+
+  @Nullable
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(@Nullable String url) {
+    this.url = url;
+  }
+
 
   public TruckStop() {}
 
