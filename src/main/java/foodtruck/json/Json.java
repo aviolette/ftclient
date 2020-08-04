@@ -11,6 +11,7 @@ public class Json {
     ObjectMapper mapper = new ObjectMapper();
     mapper.registerModule(new SimpleModule()
         .addDeserializer(LatLng.class, new LatLngDeserializer())
+        .addDeserializer(ZonedDateTime.class, new ZonedDateTimeDeserializer())
         .addSerializer(ZonedDateTime.class, new ZonedDateTimeSerializer()));
     return mapper;
   }
