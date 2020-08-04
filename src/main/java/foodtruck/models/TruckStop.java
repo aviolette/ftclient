@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javax.annotation.Nullable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
@@ -194,6 +195,7 @@ public class TruckStop implements Serializable {
     return startTime.equals(dateTime) || (dateTime.isAfter(startTime) && dateTime.isBefore(endTime));
   }
 
+  @JsonIgnore
   public boolean isActiveNow() {
     return activeDuring(startTime);
   }
@@ -216,10 +218,12 @@ public class TruckStop implements Serializable {
     return fromBeacon;
   }
 
+  @JsonIgnore
   public boolean isFromBeacon() {
     return fromBeacon != null;
   }
 
+  @JsonIgnore
   public boolean isVendorStop() {
     return getOrigin() == StopOrigin.VENDORCAL;
   }
