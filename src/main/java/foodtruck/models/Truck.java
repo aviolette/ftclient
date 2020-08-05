@@ -332,6 +332,10 @@ public class Truck implements Serializable {
     return twitterHandle;
   }
 
+  public boolean isTwittalyzer() {
+    return twittalyzer;
+  }
+
   public String getUrl() {
     return url;
   }
@@ -341,6 +345,7 @@ public class Truck implements Serializable {
     return id;
   }
 
+  @JsonIgnore
   public boolean isUsingTwittalyzer() {
     return twittalyzer;
   }
