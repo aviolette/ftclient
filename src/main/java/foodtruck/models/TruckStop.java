@@ -4,14 +4,12 @@ import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.annotation.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
@@ -162,23 +160,11 @@ public class TruckStop implements Serializable {
 
   @Override
   public String toString() {
-    try {
-      return MoreObjects.toStringHelper(this)
-          .add("truck", truck.getId())
-          .add("origin", origin)
-          .add("fromBeacon", fromBeacon)
-          .add("startTime", startTime)
-          .add("endTime", endTime)
-          .add("lastUpdated", lastUpdated)
-          .add("location", location)
-          .add("description", description)
-          .add("image URL", imageUrl)
-          .add("createdWithDevice", createdWithDeviceId)
-          .toString();
-    } catch (Throwable t) {
-      log.log(Level.WARNING, t.getMessage(), t);
-      return truck.getId();
-    }
+    return "TruckStop{" + "truck=" + truck + ", startTime=" + startTime + ", endTime=" + endTime + ", location=" +
+        location + ", locked=" + locked + ", lastUpdated=" + lastUpdated + ", fromBeacon=" + fromBeacon +
+        ", manuallyUpdated=" + manuallyUpdated + ", notes=" + notes + ", origin=" + origin + ", createdWithDeviceId=" +
+        createdWithDeviceId + ", description='" + description + '\'' + ", imageUrl='" + imageUrl + '\'' + ", url='" +
+        url + '\'' + ", key=" + key + '}';
   }
 
   /**
