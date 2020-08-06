@@ -41,6 +41,7 @@ public class TruckStop implements Serializable {
   private @Nullable String description;
   private @Nullable String imageUrl;
   private @Nullable String url;
+  private Long key;
 
   @Nullable
   public String getUrl() {
@@ -53,6 +54,10 @@ public class TruckStop implements Serializable {
 
 
   public TruckStop() {}
+
+  public Long getKey() {
+    return key;
+  }
 
   private TruckStop(Builder builder) {
     truck = builder.truck;
@@ -69,6 +74,7 @@ public class TruckStop implements Serializable {
     description = builder.description;
     imageUrl = builder.imageUrl;
     url = builder.url;
+    key = builder.key;
   }
 
   @Nullable

@@ -390,6 +390,7 @@ public class Truck implements Serializable {
     return phone;
   }
 
+  @JsonIgnore
   public boolean shouldAnalyzeStories() {
     return !Strings.isNullOrEmpty(twitterHandle) || !Strings.isNullOrEmpty(facebook);
   }
