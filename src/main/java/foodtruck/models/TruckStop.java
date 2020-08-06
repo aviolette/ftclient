@@ -165,6 +165,8 @@ public class TruckStop implements Serializable {
     try {
       return MoreObjects.toStringHelper(this)
           .add("truck", truck.getId())
+          .add("origin", origin)
+          .add("fromBeacon", fromBeacon)
           .add("startTime", startTime)
           .add("endTime", endTime)
           .add("lastUpdated", lastUpdated)
