@@ -12,6 +12,7 @@ import foodtruck.json.Json;
  * @author andrew@andrewviolette.net
  * @since 8/9/20
  */
+@SuppressWarnings("unused")
 public abstract class JsonPubSubFunction<T> implements RawBackgroundFunction {
 
   private Class<T> readType;
@@ -32,5 +33,5 @@ public abstract class JsonPubSubFunction<T> implements RawBackgroundFunction {
     execute(theObject, context);
   }
 
-  protected abstract void execute(T theObject, Context context);
+  protected abstract void execute(T theObject, Context context) throws Exception;
 }
