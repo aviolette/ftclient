@@ -2,6 +2,7 @@ package foodtruck.models;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
 
@@ -9,6 +10,7 @@ import com.google.common.base.Strings;
  * @author aviolette
  * @since 12/3/12
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TwitterNotificationAccount {
   private Location location;
   private String oauthToken;
