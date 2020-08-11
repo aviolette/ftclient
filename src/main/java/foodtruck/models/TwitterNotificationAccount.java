@@ -10,12 +10,14 @@ import com.google.common.base.Strings;
  * @since 12/3/12
  */
 public class TwitterNotificationAccount {
-  private final Location location;
-  private final String oauthToken;
-  private final String oauthTokenSecret;
-  private final String name;
-  private final String twitterHandle;
-  private final boolean active;
+  private Location location;
+  private String oauthToken;
+  private String oauthTokenSecret;
+  private String name;
+  private String twitterHandle;
+  private boolean active;
+
+  public TwitterNotificationAccount() {}
 
   private TwitterNotificationAccount(Builder builder) {
     this.location = builder.location;
