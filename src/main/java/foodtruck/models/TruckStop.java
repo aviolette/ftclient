@@ -40,6 +40,15 @@ public class TruckStop implements Serializable {
   private @Nullable String imageUrl;
   private @Nullable String url;
   private Long key;
+  private Long originatingTweetId;
+
+  public Long getOriginatingTweetId() {
+    return originatingTweetId;
+  }
+
+  public void setOriginatingTweetId(Long originatingTweetId) {
+    this.originatingTweetId = originatingTweetId;
+  }
 
   @Nullable
   public String getUrl() {
@@ -164,7 +173,7 @@ public class TruckStop implements Serializable {
         location + ", locked=" + locked + ", lastUpdated=" + lastUpdated + ", fromBeacon=" + fromBeacon +
         ", manuallyUpdated=" + manuallyUpdated + ", notes=" + notes + ", origin=" + origin + ", createdWithDeviceId=" +
         createdWithDeviceId + ", description='" + description + '\'' + ", imageUrl='" + imageUrl + '\'' + ", url='" +
-        url + '\'' + ", key=" + key + '}';
+        url + '\'' + ", key=" + key + ", originatingTweetId=" + originatingTweetId + '}';
   }
 
   /**
