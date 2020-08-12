@@ -1,8 +1,12 @@
 package foodtruck.services;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
+import foodtruck.models.Location;
+import foodtruck.models.Truck;
 import foodtruck.models.TruckStop;
 
 /**
@@ -11,4 +15,6 @@ import foodtruck.models.TruckStop;
  */
 public interface TruckStopService {
   List<TruckStop> findDuring(String truckId, LocalDate localDate);
+
+  Set<Truck> findNearLocation(Location location, Instant instant);
 }
