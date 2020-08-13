@@ -266,6 +266,7 @@ public class TruckStop implements Serializable {
       manuallyUpdated = stop.manuallyUpdated;
       description = stop.description;
       imageUrl = stop.imageUrl;
+      key = stop.getKey();
     }
 
     public Builder createdWithDeviceId(Long deviceId) {
