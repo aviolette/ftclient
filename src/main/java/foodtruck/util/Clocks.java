@@ -4,6 +4,7 @@ import java.time.Clock;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
+import java.util.Objects;
 
 public class Clocks {
   public static final ZoneId CHICAGO = ZoneId.of("America/Chicago");
@@ -17,5 +18,11 @@ public class Clocks {
       return null;
     }
     return new Date(dt.toInstant().toEpochMilli());
+  }
+
+  public static Day day(Clock clock) {
+    var dt = ZonedDateTime.ofInstant(clock.instant(), clock.getZone());
+    return Objects.requireNonNull(Day.fromConstant(dt.getDayOfWeek()))
+        .orElseThrow();
   }
 }
