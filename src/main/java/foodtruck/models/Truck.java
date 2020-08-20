@@ -408,7 +408,7 @@ public class Truck implements Serializable {
       return false;
     }
     Truck truck = (Truck) o;
-    return id.equals(truck.id) && name.equals(truck.name) && Objects.equal(iconUrl, truck.iconUrl) &&
+    return id.equals(truck.id) && Objects.equal(name, truck.name) && Objects.equal(iconUrl, truck.iconUrl) &&
         Objects.equal(twitterHandle, truck.twitterHandle) && Objects.equal(url, truck.url) &&
         inactive == truck.inactive;
   }
